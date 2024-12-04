@@ -1,0 +1,54 @@
+<div class="weather-container">
+  <div class="search-wrapper">
+    <app-search-location (citySearch)="searchCity($event)"></app-search-location>
+  </div>
+
+  <div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <i class="error-icon">⚠️</i>
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="weatherData" class="weather-content">
+    <div class="location-header">
+      <h2>{{ weatherData.cityName }}, {{ weatherData.country }}</h2>
+      <p class="date">{{ currentDate | date:'fullDate' }}</p>
+    </div>
+
+    <div class="temperature-section">
+      <img 
+        [src]="getWeatherIcon(weatherData.icon)" 
+        alt="Weather Icon" 
+        class="weather-icon"
+      >
+      <div class="temp-display">
+        <span class="temperature">
+          {{ weatherData.temperature | number:'1.0-0' }}°C
+        </span>
+        <span class="description">
+          {{ weatherData.description | titlecase }}
+        </span>
+      </div>
+    </div>
+
+    <div class="weather-details">
+      <div class="detail-item">
+        <div class="detail-icon">💧</div>
+        <div class="detail-content">
+          <span>Humidity</span>
+          <strong>{{ weatherData.humidity }}%</strong>
+        </div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">🌬️</div>
+        <div class="detail-content">
+          <span>Wind Speed</span>
+          <strong>{{ weatherData.windSpeed }} m/s</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="search-container">
+  <form (ngSubmit)="onSearch()" class="search-form">
+    <input 
+      [formControl]="cityInput" 
+      placeholder="Enter city name"
+      class="search-input"
+    >
+    <button 
+      type="submit" 
+      [disabled]="cityInput.invalid"
+      class="search-button"
+    >
+      Search
+    </button>
+  </form>
+</div>
